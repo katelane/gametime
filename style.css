@@ -33,10 +33,10 @@ header {
 }
 
 .board {
-  width: 400px;
+  width: 450px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   background-color: #D1EBF0;
   border-top: 20px solid #000;
   border-bottom: 20px solid #F5EEE9;
@@ -45,10 +45,10 @@ header {
 }
 
 .board td {
-  width: 50px;
+  width: 55px;
   height: 45px;
   padding: 10px;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .turn-black {
@@ -77,22 +77,22 @@ header {
   border-radius: 15px;
 }
 
-#piece-black {
+.piece-black {
   width: 35px;
   height: 35px;
   background: #000;
   border-radius: 50px;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 10px;
+  margin-right: 10px;
   border: 1px solid #737373;
   -moz-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
   -webkit-box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
   box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
 }
 
-#piece-white {
+.piece-white {
   width: 35px;
   height: 35px;
   background: #fff;
@@ -107,11 +107,27 @@ header {
   box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
 }
 
+#start-button {
+  float: left;
+  width: 100px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 3px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1em;
+}
+
 .info {
   width: 35%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.info p {
+  float: right;
+  margin: 5px;
 }
 
 footer {
@@ -123,6 +139,7 @@ footer {
   border-radius: 25px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
   margin-bottom: 20px;
   padding: 1px;
 }

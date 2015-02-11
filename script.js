@@ -8,13 +8,17 @@ $(function() {
       turnWhite(this);
     }
   });
+
+  $('#start-button').on('click', function() {
+    $(this).css('backgroundColor', 'red');
+  });
+
 });
 
 function turnBlack(object) {
-  $(object).toggleClass('turn-black');
+  $(object).toggleClass('piece-black');
 }
 
 function turnWhite(object) {
-  $(object).toggleClass('turn-white');
+  $(object).toggleClass('piece-white');
 }
-
