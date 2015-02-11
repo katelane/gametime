@@ -114,6 +114,7 @@ header {
   font-size: 1em;
   padding: 2px;
   border-radius: 5px;
+  display: none;
 }
 
 #turn-indicator-white {
@@ -123,6 +124,7 @@ header {
   font-size: 1em;
   padding: 2px;
   border-radius: 5px;
+  display: none;
 }
 
 #start-button {

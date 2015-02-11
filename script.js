@@ -1,14 +1,5 @@
 $(function() {
 
-  $('tbody td').click(function() {
-    if (this.classList.length === 0) {
-      turnWhite(this);
-    } else {
-      turnBlack(this);
-      turnWhite(this);
-    }
-  });
-
   $('#start-button').on('click', function() {
     startGame();
     $(this).text('Restart');
@@ -17,12 +8,12 @@ $(function() {
 
 });
 
-function turnBlack(object) {
-  $(object).toggleClass('piece-black');
+function placeBlack(object) {
+  $(object).addClass('piece-black');
 }
 
-function turnWhite(object) {
-  $(object).toggleClass('piece-white');
+function placeWhite(object) {
+  $(object).addClass('piece-white');
 }
 
 function startGame() {
@@ -35,5 +26,25 @@ function startGame() {
 }
 
 function blackTurn() {
+  $('#turn-indicator-black').show();
+  $('td').click(function () {
+    placeBlack(this);
+    $('#turn-indicator-black').hide();
+    whiteTurn();
+  });
 
+  /*
+   -- find all available space
+   -- indicate to user availble spaces
+   --- flip to black
+   */
+}
+
+function whiteTurn() {
+  $('#turn-indicator-white').show();
+  $('td').click(function () {
+    placeWhite(this);
+    $('#turn-indicator-white').hide();
+    blackTurn();
+  });
 }
