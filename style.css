@@ -116,6 +116,11 @@ header {
   padding: 3px;
   font-family: 'Philosopher', sans-serif;
   font-size: 1em;
+  text-transform: uppercase;
+}
+
+#start-button:hover{
+  background: #80e39e;
 }
 
 .info {

@@ -10,7 +10,9 @@ $(function() {
   });
 
   $('#start-button').on('click', function() {
-    $(this).css('backgroundColor', 'red');
+    startGame();
+    $(this).text('Restart');
+    $(this).css('backgroundColor', '#b2c2b7');
   });
 
 });
@@ -21,4 +23,17 @@ function turnBlack(object) {
 
 function turnWhite(object) {
   $(object).toggleClass('piece-white');
+}
+
+function startGame() {
+  $('td').removeClass('piece-white piece-black')
+  $('tr:nth-child(3) td:nth-child(3)').addClass('piece-white');
+  $('tr:nth-child(3) td:nth-child(4)').addClass('piece-black');
+  $('tr:nth-child(4) td:nth-child(3)').addClass('piece-black');
+  $('tr:nth-child(4) td:nth-child(4)').addClass('piece-white');
+  blackTurn();
+}
+
+function blackTurn() {
+
 }
