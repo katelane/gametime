@@ -34,7 +34,7 @@ header {
 
 .board {
   width: 450px;
-  height: 435px;
+  height: 440px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
@@ -43,13 +43,24 @@ header {
   border-left: 20px solid #F5EEE9;
   border-right: 20px solid #000;
   background-color: #D1EBF0;
+  background-image:
+    linear-gradient(45deg, #b2c2b7 25%, transparent 25%, transparent 75%, #b2c2b7 75%),
+    linear-gradient(45deg, #b2c2b7 25%, transparent 25%, transparent 75%, #b2c2b7 75%);
+  background-size:112px 110px;
+  background-position:0 0, 56px 55px;
+}
+
+.board table {
+  border: 3px solid #737373;
+  width: 450px;
+  height: 441px;
 }
 
 .board td {
   width: 40px;
-  height: 30px;
-  padding: 10px;
-  border: 1px solid #000;
+  height: 40px;
+  padding: 5px;
+  /*border: 1px solid #e2853b;*/
 }
 
 .turn-black {
@@ -78,7 +89,9 @@ header {
   border-radius: 15px;
 }
 
-.piece-black {
+.piece-black::after {
+  content: '';
+  display: block;
   width: 35px;
   height: 35px;
   background: #000;
@@ -93,7 +106,9 @@ header {
   box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .4), inset -2px -2px 2px rgba(0, 0, 0, .4);
 }
 
-.piece-white {
+.piece-white::after {
+  content: '';
+  display: block;
   width: 35px;
   height: 35px;
   background: #fff;
