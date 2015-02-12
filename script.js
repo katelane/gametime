@@ -21,10 +21,10 @@ function placePiece(object, player) {
 
 function startGame() {
   $('td').removeClass('piece-white piece-black')
-  $('tr:nth-child(3) td:nth-child(3)').addClass('piece-white');
-  $('tr:nth-child(3) td:nth-child(4)').addClass('piece-black');
-  $('tr:nth-child(4) td:nth-child(3)').addClass('piece-black');
   $('tr:nth-child(4) td:nth-child(4)').addClass('piece-white');
+  $('tr:nth-child(4) td:nth-child(5)').addClass('piece-black');
+  $('tr:nth-child(5) td:nth-child(4)').addClass('piece-black');
+  $('tr:nth-child(5) td:nth-child(5)').addClass('piece-white');
 
   takeTurn(player);
 }
