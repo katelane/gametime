@@ -32,4 +32,3 @@ function startGame() {
 function takeTurn(player) {
   $('#turn-indicator-' + player).show();
 }
-

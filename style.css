@@ -26,7 +26,7 @@ header {
 }
 
 .container {
-  width: 50%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -109,7 +109,7 @@ header {
 
 #turn-indicator-black {
   background: #fff;
-  color: #ec8521;
+  color: #d44655;
   font-family: 'Philosopher', sans-serif;
   font-size: 1em;
   padding: 2px;
@@ -119,7 +119,7 @@ header {
 
 #turn-indicator-white {
   background: #fff;
-  color: #ec8521;
+  color: #d44655;
   font-family: 'Philosopher', sans-serif;
   font-size: 1em;
   padding: 2px;
@@ -140,19 +140,47 @@ header {
 }
 
 #start-button:hover{
-  background: #80e39e;
+  background: #eb8573;
 }
 
-.info {
+.start-panel {
   width: 35%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 100px;
   text-align: center;
 }
 
-.info p {
+.start-panel p {
   float: right;
   margin: 5px;
+}
+
+.info {
+  width: 100%;
+  margin: -10px;
+  padding: 10px;
+  background: #b2c2b7;
+  background-image: url("images/patternstripe.png");
+  background-position: top;
+  background-repeat: repeat-x;
+}
+
+.info-container {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+.info-left {
+  width: 10%;
+  float: left;
+}
+
+.info-right {
+  width: 60%;
+  float: right;
 }
 
 footer {
