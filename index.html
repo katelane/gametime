@@ -8,10 +8,11 @@
   </head>
 	<body>
 	<div class="container">
-	    <header>
+	  <header>
 			<h1>Othello</h1>
     </header>
-	<div class="sidebar-left">
+
+		<div class="sidebar-left">
 			<div class="piece-black"></div>
 			<p>Pieces: </p>
 			<div id="turn-indicator-black">Your Turn!</div>
@@ -37,16 +38,36 @@
 
 		<div style="clear:both;"></div>
 
-		<div class="info">
-			<div id="start-button">Start</div>
+	<div class="start-panel">
+		<div id="start-button">Start</div>
 			<p>Welcome to the game.</p>
+	</div>
+
+	<div style="clear:both;"></div>
+
+	<div class="info">
+	<div class="info-container">
+		<div class="info-left">
+			<h1>About Othello</h1>
 		</div>
 
-		<div style="clear:both;"></div>
+		<div class="info-right">
+			<p>A game of abstract strategy, <strong>Othello</strong> can only be played as a 2 player game. Players battle to finish the game with more of their own pieces on the board than their opponent. </p>
 
-		<footer>
-			<p>A JavaScript game by Sam and Kate &copy; 2015</p>
-		</footer>
+			<p>Both players begin the game with two pieces on the board in the four center squares. <strong>Black must make the first move.</strong> A legal move consists of a piece being placed on the board that creates a straight line (vertical, horizontal or diagonal) made up of a piece of the player's color at either end and only pieces of the opponent's color in between. When a player achieves this line, they must complete the move by turning all of the opponent pieces in between their end pieces so that the line becomes entirely the player's color.</p>
+
+	<!-- This turning action must be completed for every legal turning line that is created with the placing of the new piece. -->
+
+			<p>Players continue to take turns until they get to the end of the game and a winner is decided. The game is finished when there are no spaces left on the board or there are no more possible legal moves for either player.</p>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+
+	<footer>
+		<p>A JavaScript game by Sam and Kate &copy; 2015</p>
+	</footer>
+
+	</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="script.js"></script>
