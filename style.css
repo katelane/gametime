@@ -39,9 +39,9 @@ header {
   margin-right: auto;
   margin-bottom: 20px;
   border-top: 20px solid #000;
-  border-bottom: 20px solid #F5EEE9;
+  border-bottom: 20px solid #e8ded7;
   border-left: 20px solid #F5EEE9;
-  border-right: 20px solid #000;
+  border-right: 20px solid #1f1f1f;
   background-color: #D1EBF0;
   background-image:
     linear-gradient(45deg, #b2c2b7 25%, transparent 25%, transparent 75%, #b2c2b7 75%),

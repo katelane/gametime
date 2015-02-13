@@ -2,7 +2,7 @@ $(function() {
   var player = 'black'
 
   $('#start-button').on('click', function() {
-    startGame();
+    startGame(player);
     $(this).text('Restart');
     $(this).css('backgroundColor', '#b2c2b7');
   });
@@ -19,7 +19,7 @@ function placePiece(object, player) {
   $(object).addClass('piece-' + player);
 }
 
-function startGame() {
+function startGame(player) {
   $('td').removeClass('piece-white piece-black')
   $('tr:nth-child(4) td:nth-child(4)').addClass('piece-white');
   $('tr:nth-child(4) td:nth-child(5)').addClass('piece-black');
