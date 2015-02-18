@@ -41,6 +41,7 @@ function startTurn(player) {
 function activateSpaces(index, space) {
   var coordinates = getCoordinates(space);
   goWest(space, coordinates[0], coordinates[1]);
+  goEast(space, coordinates[0], coordinates[1]);
 }
 
 function getCoordinates(object) {
@@ -67,6 +68,23 @@ function goWest(space, x, y) {
   }
 }
 
+function goEast(space, x, y) {
+  var nextSpace = $('tr:nth-child(' + x + ') td:nth-child(' + (y + 1) + ')');
+  var nextCoordinates = getCoordinates(nextSpace[0]);
+  var otherPlayer = player === 'white' ? 'black' : 'white';
+  if (nextSpace.hasClass('active')) {
+    return;
+  } else if (nextSpace.hasClass('piece-' + player)) {
+    return;
+  } else if (nextSpace.hasClass('piece-' + otherPlayer)) {
+    goEast(space, nextCoordinates[0], nextCoordinates[1]);
+  } else if (nextSpace.hasClass('')) {
+    if (lookForPartner('west', nextCoordinates[0], nextCoordinates[1])) {
+      nextSpace.addClass('active');
+    }
+  }
+}
+
 function lookForPartner(direction, x, y) {
   var legalSpace = false;
   switch (direction) {
@@ -74,6 +92,14 @@ function lookForPartner(direction, x, y) {
       var nextSpace = $('tr:nth-child(' + (x + 1) + ') td:nth-child(' + y + ')');
       var sibs = nextSpace.siblings();
       sibs.slice(nextSpace.index(), 6).each(function (index, value) {
+        if (value.className === ('piece-' + player)) {
+          legalSpace = true;
+        }
+      });
+    case 'west':
+      var nextSpace = $('tr:nth-child(' + (x - 1) + ') td:nth-child(' + y + ')');
+      var sibs = nextSpace.siblings();
+      sibs.slice(1, nextSpace.index()).each(function (index, value) {
         if (value.className === ('piece-' + player)) {
           legalSpace = true;
         }
