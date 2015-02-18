@@ -6,7 +6,7 @@ $(function() {
     $(this).css('backgroundColor', '#b2c2b7');
   });
 
-  $('td').click(function () {
+  $('td.active').click(function () {
     placePiece(this, player);
     $('#turn-indicator-' + player).hide();
     player === 'white' ? player = 'black' : player = 'white';
@@ -44,6 +44,15 @@ function activateSpaces(index, space) {
   goEast(space, coordinates[0], coordinates[1]);
   goNorth(space, coordinates[0], coordinates[1]);
   goSouth(space, coordinates[0], coordinates[1]);
+
+  $('td.active').click(function () {
+    placePiece(this, player);
+    $('#turn-indicator-' + player).hide();
+    player === 'white' ? player = 'black' : player = 'white';
+    startTurn(player);
+  });
+
+  $('td:not(.active)').off('click');
 }
 
 function getCoordinates(object) {
@@ -54,7 +63,7 @@ function getCoordinates(object) {
 }
 
 function goWest(space, x, y) {
-  var nextSpace = $('tr:nth-child(' + x + ') td:nth-child(' + (y - 1) + ')');
+  var nextSpace = $('tr:nth-child(' + (x -1) + ') td:nth-child(' + y + ')');
   var nextCoordinates = getCoordinates(nextSpace[0]);
   var otherPlayer = player === 'white' ? 'black' : 'white';
   if (nextSpace.hasClass('active')) {
