@@ -5,13 +5,6 @@ $(function() {
     $(this).text('Restart');
     $(this).css('backgroundColor', '#b2c2b7');
   });
-
-  $('td.active').click(function () {
-    placePiece(this, player);
-    $('#turn-indicator-' + player).hide();
-    player === 'white' ? player = 'black' : player = 'white';
-    startTurn(player);
-  });
 });
 
 var player = 'black'
@@ -63,7 +56,7 @@ function getCoordinates(object) {
 }
 
 function goWest(space, x, y) {
-  var nextSpace = $('tr:nth-child(' + (x -1) + ') td:nth-child(' + y + ')');
+  var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x - 1) + ')');
   var nextCoordinates = getCoordinates(nextSpace[0]);
   var otherPlayer = player === 'white' ? 'black' : 'white';
   if (nextSpace.hasClass('active')) {
@@ -80,7 +73,7 @@ function goWest(space, x, y) {
 }
 
 function goEast(space, x, y) {
-  var nextSpace = $('tr:nth-child(' + x + ') td:nth-child(' + (y + 1) + ')');
+  var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x + 1) + ')');
   var nextCoordinates = getCoordinates(nextSpace[0]);
   var otherPlayer = player === 'white' ? 'black' : 'white';
   if (nextSpace.hasClass('active')) {
@@ -97,7 +90,7 @@ function goEast(space, x, y) {
 }
 
 function goNorth(space, x, y) {
-  var nextSpace = $('tr:nth-child(' + (x - 1) + ') td:nth-child(' + y + ')');
+  var nextSpace = $('tr:nth-child(' + (y - 1) + ') td:nth-child(' + x + ')');
   var nextCoordinates = getCoordinates(nextSpace[0]);
   var otherPlayer = player === 'white' ? 'black' : 'white';
   if (nextSpace.hasClass('active')) {
@@ -114,7 +107,7 @@ function goNorth(space, x, y) {
 }
 
 function goSouth(space, x, y) {
-  var nextSpace = $('tr:nth-child(' + (x + 1) + ') td:nth-child(' + y + ')');
+  var nextSpace = $('tr:nth-child(' + (y + 1) + ') td:nth-child(' + x + ')');
   var nextCoordinates = getCoordinates(nextSpace[0]);
   var otherPlayer = player === 'white' ? 'black' : 'white';
   if (nextSpace.hasClass('active')) {
@@ -134,7 +127,7 @@ function lookForPartner(direction, x, y) {
   var legalSpace = false;
   switch (direction) {
     case 'east':
-      var nextSpace = $('tr:nth-child(' + (x + 1) + ') td:nth-child(' + y + ')');
+      var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x + 1) + ')');
       var sibs = nextSpace.siblings();
       sibs.slice(nextSpace.index(), 6).each(function (index, value) {
         if (value.className === ('piece-' + player)) {
@@ -142,7 +135,7 @@ function lookForPartner(direction, x, y) {
         }
       });
     case 'west':
-      var nextSpace = $('tr:nth-child(' + (x - 1) + ') td:nth-child(' + y + ')');
+      var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x - 1) + ')');
       var sibs = nextSpace.siblings();
       sibs.slice(1, nextSpace.index()).each(function (index, value) {
         if (value.className === ('piece-' + player)) {
@@ -150,7 +143,7 @@ function lookForPartner(direction, x, y) {
         }
       });
     case 'south':
-      var nextSpace = $('tr:nth-child(' + x + ') td:nth-child(' + (y + 1) + ')');
+      var nextSpace = $('tr:nth-child(' + (y + 1) + ') td:nth-child(' + x + ')');
       var sibs = nextSpace.siblings();
       sibs.slice(nextSpace.index(), 6).each(function (index, value) {
         if (value.className === ('piece-' + player)) {
@@ -158,7 +151,7 @@ function lookForPartner(direction, x, y) {
         }
       });
     case 'north':
-      var nextSpace = $('tr:nth-child(' + x + ') td:nth-child(' + (y - 1) + ')');
+      var nextSpace = $('tr:nth-child(' + (y - 1) + ') td:nth-child(' + x + ')');
       var sibs = nextSpace.siblings();
       sibs.slice(1, nextSpace.index()).each(function (index, value) {
         if (value.className === ('piece-' + player)) {
