@@ -1,7 +1,7 @@
 $(function() {
 
   $('#start-button').on('click', function() {
-    startGame(player);
+    startGame();
     $(this).text('Restart');
     $(this).css('backgroundColor', '#b2c2b7');
   });
@@ -9,11 +9,11 @@ $(function() {
 
 var player = 'black'
 
-function placePiece(object, player) {
+function placePiece(object) {
   $(object).addClass('piece-' + player);
 }
 
-function startGame(player) {
+function startGame() {
   $('td').removeClass('piece-white piece-black')
   $('tr:nth-child(4) td:nth-child(4)').addClass('piece-white');
   $('tr:nth-child(4) td:nth-child(5)').addClass('piece-black');
@@ -23,12 +23,21 @@ function startGame(player) {
   startTurn(player);
 }
 
-function startTurn(player) {
+function startTurn() {
   $('#turn-indicator-' + player).show();
   $('.active').removeClass('active');
   var otherPlayer = player === 'white' ? 'black' : 'white';
   var opponentSpaces = $('tbody .piece-' + otherPlayer);
   opponentSpaces.each(activateSpaces);
+
+  $('td.active').on("click", function () {
+    placePiece(this, player);
+    $('#turn-indicator-' + player).hide();
+    player === 'white' ? player = 'black' : player = 'white';
+    startTurn(player);
+  });
+
+  $('td:not(.active)').off('click');
 }
 
 function activateSpaces(index, space) {
@@ -37,15 +46,6 @@ function activateSpaces(index, space) {
   goEast(space, coordinates[0], coordinates[1]);
   goNorth(space, coordinates[0], coordinates[1]);
   goSouth(space, coordinates[0], coordinates[1]);
-
-  $('td.active').click(function () {
-    placePiece(this, player);
-    $('#turn-indicator-' + player).hide();
-    player === 'white' ? player = 'black' : player = 'white';
-    startTurn(player);
-  });
-
-  $('td:not(.active)').off('click');
 }
 
 function getCoordinates(object) {
