@@ -63,6 +63,10 @@ header {
   /*border: 1px solid #e2853b;*/
 }
 
+.active:hover {
+  background: #eee;
+}
+
 .turn-black {
   background-color: black;
 }

@@ -11,6 +11,19 @@ var player = 'black'
 
 function placePiece(object) {
   $(object).addClass('piece-' + player);
+  var coordinates = getCoordinates(object);
+  if (lookForPartner('west', coordinates[0], coordinates[1])) {
+    flipPieces('east', coordinates[0], coordinates[1]);
+  }
+  if (lookForPartner('east', coordinates[0], coordinates[1])) {
+    flipPieces('west', coordinates[0], coordinates[1]);
+  }
+  if (lookForPartner('north', coordinates[0], coordinates[1])) {
+    flipPieces('south', coordinates[0], coordinates[1]);
+  }
+  if (lookForPartner('south', coordinates[0], coordinates[1])) {
+    flipPieces('north', coordinates[0], coordinates[1]);
+  }
 }
 
 function startGame() {
@@ -129,7 +142,7 @@ function lookForPartner(direction, x, y) {
     case 'east':
       var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x + 1) + ')');
       var sibs = nextSpace.siblings();
-      sibs.slice(nextSpace.index(), 6).each(function (index, value) {
+      sibs.slice(nextSpace.index(), 8).each(function (index, value) {
         if (value.className === ('piece-' + player)) {
           legalSpace = true;
         }
@@ -143,21 +156,83 @@ function lookForPartner(direction, x, y) {
         }
       });
     case 'south':
-      var nextSpace = $('tr:nth-child(' + (y + 1) + ') td:nth-child(' + x + ')');
-      var sibs = nextSpace.siblings();
-      sibs.slice(nextSpace.index(), 6).each(function (index, value) {
+      var nextSpace = $('tr:nth-child(' + (y + 1) + ') td:nth-child(' + x + ')')[0];
+      var sibs = [];
+      for (i = 1; i < 9; i++) {
+        sibs.push($('tr:nth-child(' + (i) + ') td:nth-child(' + x + ')')[0]);
+      };
+      sibs.slice(nextSpace.cellIndex, 8).forEach(function (value) {
         if (value.className === ('piece-' + player)) {
           legalSpace = true;
         }
       });
     case 'north':
-      var nextSpace = $('tr:nth-child(' + (y - 1) + ') td:nth-child(' + x + ')');
-      var sibs = nextSpace.siblings();
-      sibs.slice(1, nextSpace.index()).each(function (index, value) {
+      var nextSpace = $('tr:nth-child(' + (y - 1) + ') td:nth-child(' + x + ')')[0];
+      var sibs = [];
+      for (i = 1; i < 9; i++) {
+        sibs.push($('tr:nth-child(' + (i) + ') td:nth-child(' + x + ')')[0]);
+      };
+      sibs.slice(1, nextSpace.cellIndex).forEach(function (value) {
         if (value.className === ('piece-' + player)) {
           legalSpace = true;
         }
       });
   }
   return legalSpace;
+}
+
+function flipPieces(direction, x, y) {
+  var otherPlayer = player === 'white' ? 'black' : 'white';
+  switch (direction) {
+    case 'east':
+      var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x + 1) + ')');
+      var sibs = nextSpace.siblings();
+      sibs.slice(nextSpace.index(), 8).each(function (index, value) {
+        if (value.className === ('piece-' + otherPlayer)) {
+          $(value).addClass('piece-' + player);
+          $(value).removeClass('piece-' + otherPlayer);
+        } else if (value.className === ('piece-' + player)) {
+          return false;
+        }
+    });
+    case 'west':
+      var nextSpace = $('tr:nth-child(' + y + ') td:nth-child(' + (x - 1) + ')');
+      var sibs = nextSpace.siblings();
+      sibs.slice(1, nextSpace.index()).each(function (index, value) {
+        if (value.className === ('piece-' + otherPlayer)) {
+          $(value).addClass('piece-' + player);
+          $(value).removeClass('piece-' + otherPlayer);
+        } else if (value.className === ('piece-' + player)) {
+          return false;
+        }
+    });
+    case 'south':
+      var nextSpace = $('tr:nth-child(' + (y + 1) + ') td:nth-child(' + x + ')');
+      var sibs = [];
+      for (i = 1; i < 9; i++) {
+        sibs.push($('tr:nth-child(' + (i) + ') td:nth-child(' + x + ')')[0]);
+      };
+      sibs.slice(nextSpace.index(), 8).forEach(function (value) {
+        if (value.className === ('piece-' + otherPlayer)) {
+          $(value).addClass('piece-' + player);
+          $(value).removeClass('piece-' + otherPlayer);
+        } else if (value.className === ('piece-' + player)) {
+          return false;
+        }
+    });
+    case 'north':
+      var nextSpace = $('tr:nth-child(' + (y - 1) + ') td:nth-child(' + x + ')');
+      var sibs = [];
+      for (i = 1; i < 9; i++) {
+        sibs.push($('tr:nth-child(' + (i) + ') td:nth-child(' + x + ')')[0]);
+      };
+      sibs.slice(1, nextSpace.index()).forEach(function (value) {
+        if (value.className === ('piece-' + otherPlayer)) {
+          $(value).addClass('piece-' + player);
+          $(value).removeClass('piece-' + otherPlayer);
+        } else if (value.className === ('piece-' + player)) {
+          return false;
+        }
+    });
+  }
 }
