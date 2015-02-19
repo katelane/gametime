@@ -64,7 +64,8 @@ header {
 }
 
 .active:hover {
-  background: #eee;
+  background-image: url("images/circle.gif");
+  background-repeat: no-repeat;
 }
 
 .turn-black {
